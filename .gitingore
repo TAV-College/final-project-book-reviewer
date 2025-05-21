@@ -1,0 +1,35 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for SQLite databases
+*.sqlite
+*.sqlite3
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# VS Code specific files
+.vscode/
+
+# Mac files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
