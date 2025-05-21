@@ -1,0 +1,51 @@
+<%- contentFor('body') %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body text-center">
+        <h1 class="card-title">Welcome to My Library</h1>
+        <p class="card-text lead">
+          A digital platform to manage your book collection.
+          Search for books and add them to your personal library.
+        </p>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+          <a href="/books" class="btn btn-primary btn-lg me-md-2">View Your Library</a>
+          <a href="/books/search" class="btn btn-outline-primary btn-lg">Search Books</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card shadow mt-4">
+      <div class="card-header bg-light">
+        <h2 class="h4 mb-0">Features</h2>
+      </div>
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="text-center">
+              <i class="bi bi-search fs-1 text-primary"></i>
+              <h3 class="h5 mt-3">Search Books</h3>
+              <p>Find any book using the Google Books API</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="text-center">
+              <i class="bi bi-collection fs-1 text-primary"></i>
+              <h3 class="h5 mt-3">Manage Collection</h3>
+              <p>Add, view, and remove books from your library</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="text-center">
+              <i class="bi bi-person-circle fs-1 text-primary"></i>
+              <h3 class="h5 mt-3">User Accounts</h3>
+              <p>Create an account to save your personal library</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

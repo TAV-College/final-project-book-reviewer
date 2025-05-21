@@ -1,0 +1,61 @@
+/* Bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+/* Body styling */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+/* Sticky footer */
+.footer {
+  margin-top: auto;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Book cover thumbnails */
+.card-img-top {
+  background-color: #f8f9fa;
+}
+
+/* Navbar brand styling */
+.navbar-brand {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Custom button styling */
+.btn-primary {
+  background-color: #4a89dc;
+  border-color: #4a89dc;
+}
+
+.btn-primary:hover {
+  background-color: #3a6cbd;
+  border-color: #3a6cbd;
+}
+
+/* Main content area */
+.container {
+  padding-bottom: 2rem;
+}
+
+/* Book description text overflow */
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,84 @@
+
+<%- contentFor('body') %>
+
+<h1>Search Books</h1>
+
+<div class="row mb-4">
+  <div class="col-md-8 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <form action="/books/search" method="GET" class="d-flex">
+          <input 
+            type="text" 
+            name="q" 
+            class="form-control me-2" 
+            placeholder="Search by title, author, or ISBN..." 
+            value="<%= locals.query || '' %>"
+            required
+          >
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if (locals.books && books.length > 0) { %>
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    <% books.forEach(book => { %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <% if (book.thumbnail) { %>
+            <img src="<%= book.thumbnail %>" class="card-img-top" alt="<%= book.title %>" style="height: 200px; object-fit: contain; padding: 10px;">
+          <% } else { %>
+            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+              <i class="bi bi-book fs-1 text-secondary"></i>
+            </div>
+          <% } %>
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= book.author %></h6>
+            <p class="card-text small mb-3">
+              <%= book.description ? (book.description.substring(0, 100) + '...') : 'No description available.' %>
+            </p>
+            <p class="card-text small">
+              <% if (book.isbn) { %>
+                <strong>ISBN:</strong> <%= book.isbn %><br>
+              <% } %>
+              <% if (book.publisher) { %>
+                <strong>Publisher:</strong> <%= book.publisher %><br>
+              <% } %>
+              <% if (book.published_date) { %>
+                <strong>Published:</strong> <%= book.published_date %><br>
+              <% } %>
+            </p>
+          </div>
+          <div class="card-footer bg-transparent">
+            <% if (locals.user) { %>
+              <form action="/books" method="POST" class="d-grid">
+                <input type="hidden" name="title" value="<%= book.title %>">
+                <input type="hidden" name="author" value="<%= book.author %>">
+                <input type="hidden" name="isbn" value="<%= book.isbn %>">
+                <input type="hidden" name="publisher" value="<%= book.publisher %>">
+                <input type="hidden" name="published_date" value="<%= book.published_date %>">
+                <input type="hidden" name="description" value="<%= book.description %>">
+                <input type="hidden" name="page_count" value="<%= book.page_count %>">
+                <input type="hidden" name="category" value="<%= book.category %>">
+                <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                <button type="submit" class="btn btn-primary">Add to Library</button>
+              </form>
+            <% } else { %>
+              <div class="alert alert-info py-2 mb-0">
+                <small>Please <a href="/users/login">login</a> to add books to your library</small>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+<% } else if (locals.query) { %>
+  <div class="alert alert-info" role="alert">
+    No books found matching "<%= query %>". Try a different search term.
+  </div>
+<% } %>

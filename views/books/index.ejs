@@ -1,0 +1,51 @@
+<%- contentFor('body') %>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Your Library</h1>
+  <a href="/books/search" class="btn btn-primary">
+    <i class="bi bi-plus-circle"></i> Add Books
+  </a>
+</div>
+
+<% if (books.length === 0) { %>
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">Your library is empty!</h4>
+    <p>Start by searching for books and adding them to your collection.</p>
+    <hr>
+    <p class="mb-0">
+      <a href="/books/search" class="btn btn-info">Search Books</a>
+    </p>
+  </div>
+<% } else { %>
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    <% books.forEach(book => { %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <% if (book.thumbnail) { %>
+            <img src="<%= book.thumbnail %>" class="card-img-top" alt="<%= book.title %>" style="height: 200px; object-fit: contain; padding: 10px;">
+          <% } else { %>
+            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+              <i class="bi bi-book fs-1 text-secondary"></i>
+            </div>
+          <% } %>
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= book.author %></h6>
+            <p class="card-text small">
+              <%= book.description ? (book.description.substring(0, 100) + '...') : 'No description available.' %>
+            </p>
+          </div>
+          <div class="card-footer bg-transparent">
+            <div class="d-flex justify-content-between">
+              <a href="/books/<%= book.id %>" class="btn btn-sm btn-outline-primary">View Details</a>
+              <% if (locals.user) { %>
+                <form action="/books/<%= book.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to remove this book?');">
+                  <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+<% } %>
